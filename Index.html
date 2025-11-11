@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Jones - Screenwriter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 40px 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        h1 {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .contact {
+            font-size: 1.1em;
+            margin-top: 25px;
+        }
+
+        .contact a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            transition: border-color 0.3s;
+            padding-bottom: 2px;
+        }
+
+        .contact a:hover {
+            border-color: white;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .about-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #4a4a4a;
+            text-align: center;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .work-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .work-thumbnail {
+            width: 100%;
+            height: 240px;
+            background: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .work-card:hover .work-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-overlay::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .work-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .work-content {
+            padding: 30px;
+        }
+
+        .work-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+
+        .work-description {
+            color: #666;
+            font-size: 1.05em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .work-link {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .work-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            background: #1a1a1a;
+            color: #fff;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin: 8px 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            header {
+                padding: 60px 20px 50px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-content {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Angel Jones</h1>
+            <p class="tagline">Screenwriter | Storyteller | Visionary</p>
+            <div class="contact">
+                <p>📧 <a href="mailto:angelchristabel53@gmail.com">angelchristabel53@gmail.com</a></p>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>As a screenwriter, I craft authentic stories that explore the complexities of the human experience. My work spans diverse genres and themes, from wealth and power to love, identity, and the secrets that shape our lives. With a focus on character-driven narratives, compelling conflicts, and universal emotions, my scripts aim to entertain, provoke thought, and touch hearts. Specializing in drama, romance, and character-driven stories, I'm passionate about bringing depth and nuance to the screen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Works</h2>
+            
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/C_kow1RooVs/maxresdefault.jpg" alt="Billionaire in Trouble">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Billionaire in Trouble</h3>
+                        <p class="work-description">A gripping tale of power, wealth, and the consequences of ambition.</p>
+                        <a href="https://youtu.be/C_kow1RooVs?si=q8SVlqHbGulnypNp" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/7IFRGSfz7o0/maxresdefault.jpg" alt="Who We Are">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Who We Are</h3>
+                        <p class="work-description">An exploration of identity, culture, and the ties that bind us together.</p>
+                        <a href="https://youtu.be/7IFRGSfz7o0?si=nrytB53nU2AQsRhb" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/hQlEpvL1McE/maxresdefault.jpg" alt="General Trouble">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">General Trouble</h3>
+                        <p class="work-description">When chaos strikes, heroes emerge from unexpected places.</p>
+                        <a href="https://youtu.be/hQlEpvL1McE?si=XLAAIeqKADh1v8kD" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/q_m1DZj_u3w/maxresdefault.jpg" alt="Princess Clash">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Princess Clash</h3>
+                        <p class="work-description">Royal rivalry meets destiny in this captivating drama.</p>
+                        <a href="https://youtu.be/q_m1DZj_u3w?si=-byijiZlx6nN7vgW" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/geap5FX0fPE/maxresdefault.jpg" alt="Mad Couple">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Mad Couple</h3>
+                        <p class="work-description">Love, madness, and the thin line between passion and chaos.</p>
+                        <a href="https://youtu.be/geap5FX0fPE?si=6NC6FeZ70g3BDR7a" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/iG8nAHKDgnY/maxresdefault.jpg" alt="Secret of the Past">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Secret of the Past</h3>
+                        <p class="work-description">Buried truths resurface, threatening to unravel everything.</p>
+                        <a href="https://youtu.be/iG8nAHKDgnY?si=zbyK15uQrZJDCc5J" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/urf3xeMMpxA/maxresdefault.jpg" alt="Love and War">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Love and War</h3>
+                        <p class="work-description">In the midst of conflict, love becomes the ultimate battlefield.</p>
+                        <a href="https://youtu.be/urf3xeMMpxA?si=0byKszpUT5WS5UL" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/cOoXR8w4czk/maxresdefault.jpg" alt="African Woman">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">African Woman</h3>
+                        <p class="work-description">A powerful celebration of strength, resilience, and heritage.</p>
+                        <a href="https://youtu.be/cOoXR8w4czk?si=ZEa3byzunjEtGQYp" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <div class="work-thumbnail">
+                        <img src="https://img.youtube.com/vi/lsyH1YlVtxA/maxresdefault.jpg" alt="Stolen Love Affair">
+                        <div class="play-overlay"></div>
+                    </div>
+                    <div class="work-content">
+                        <h3 class="work-title">Stolen Love Affair</h3>
+                        <p class="work-description">Forbidden passion leads to dangerous consequences.</p>
+                        <a href="https://youtu.be/lsyH1YlVtxA?si=yR11FPXK5_qWsnK5" target="_blank" class="work-link">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Angel Jones. All rights reserved.</p>
+        <p>Crafting stories that move hearts and minds.</p>
+    </footer>
+</body>
+  </html>
